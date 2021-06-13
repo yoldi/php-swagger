@@ -12,7 +12,6 @@
     "php": "^8.0",
     "ext-json": "*",
     "composer/package-versions-deprecated": "^1.10.99",
-    "roave/better-reflection": "^4.12",
     "cebe/php-openapi": "^1.5"
   },
   "require-dev": {

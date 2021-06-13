@@ -1,0 +1,245 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "test",
+        "description": "",
+        "version": "0.0.1"
+    },
+    "components": {
+        "schemas": {
+            "TestCollection": {
+                "required": [
+                    "items"
+                ],
+                "type": "object",
+                "properties": {
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TestSchema2"
+                        }
+                    }
+                }
+            },
+            "TestSchema": {
+                "required": [
+                    "item",
+                    "type",
+                    "schema2",
+                    "boolean",
+                    "integer",
+                    "float",
+                    "integerNull",
+                    "schemaNull"
+                ],
+                "type": "object",
+                "properties": {
+                    "item": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/TestSchema2"
+                            }
+                        ],
+                        "nullable": false
+                    },
+                    "type": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "schema2": {
+                        "$ref": "#/components/schemas/TestSchema2"
+                    },
+                    "boolean": {
+                        "type": "boolean",
+                        "nullable": false
+                    },
+                    "integer": {
+                        "type": "integer",
+                        "nullable": false
+                    },
+                    "float": {
+                        "type": "integer",
+                        "nullable": false
+                    },
+                    "integerNull": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "schemaNull": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/TestSchema2"
+                            }
+                        ],
+                        "nullable": true
+                    }
+                }
+            },
+            "TestSchema2": {
+                "required": [
+                    "id"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "nullable": false
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "token": {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+    "paths": {
+        "/empty-response": {
+            "post": {
+                "tags": [
+                    "TestTag"
+                ],
+                "operationId": "emptyResponse",
+                "parameters": [],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TestSchema2"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": []
+            }
+        },
+        "/with-parameters/{id}/{method}": {
+            "post": {
+                "tags": [
+                    "TestTag"
+                ],
+                "operationId": "withParameters",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "method",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TestSchema2"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK123",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/with-security": {
+            "post": {
+                "tags": [
+                    "TestTag"
+                ],
+                "operationId": "test",
+                "parameters": [],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TestSchema2"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK123",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/without-security": {
+            "post": {
+                "tags": [
+                    "TestTag"
+                ],
+                "operationId": "testWithoutSecurity",
+                "parameters": [],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TestSchema2"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK123",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": []
+            }
+        }
+    }
+}
