@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+  php-cli:
+    container_name: swagger_php-cli
+    image: ${REGISTRY:-localhost}/swagger-php-test-cli
+    build:
+      dockerfile: php-cli/Dockerfile
+      context: docker
+    volumes:
+      - ./:/app
+    working_dir: /app
