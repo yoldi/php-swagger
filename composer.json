@@ -1,0 +1,34 @@
+{
+  "name": "yoldi/php-swagger",
+  "description": "OpenAPI 3.0 documentation generator from PHP attributes",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "@melodi_c"
+    }
+  ],
+  "require": {
+    "php": "^8.0",
+    "ext-json": "*",
+    "composer/package-versions-deprecated": "^1.10.99",
+    "roave/better-reflection": "^4.12",
+    "cebe/php-openapi": "^1.5"
+  },
+  "require-dev": {
+    "codeception/codeception": "^4.1",
+    "codeception/module-asserts": "^1.0.0",
+    "phpmetrics/phpmetrics": "^2.7",
+    "vimeo/psalm": "^4.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Yoldi\\Swagger\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Yoldi\\Swagger\\": "tests/unit"
+    }
+  }
+}
