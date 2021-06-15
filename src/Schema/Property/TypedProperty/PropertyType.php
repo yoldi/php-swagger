@@ -12,7 +12,6 @@ namespace Yoldi\Swagger\Schema\Property\TypedProperty;
 use InvalidArgumentException;
 use ReflectionProperty;
 use ReflectionType;
-use Roave\BetterReflection\Reflector\ClassReflector;
 
 class PropertyType
 {
